@@ -1,4 +1,4 @@
-const App() {
+ App() {
   return <>React app</>;
 }
 
