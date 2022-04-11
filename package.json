@@ -14,7 +14,7 @@
     "format:check": "prettier --check src/**/*.{js}",
     "prepare": "husky install"
   },
-   "devDependencies": {
+  "devDependencies": {
     "@babel/preset-env": "^7.16.11",
     "babel-jest": "^27.5.1",
     "babel-polyfill": "^6.26.0",
@@ -81,5 +81,10 @@
       "pretty-quick --staged",
       "npm run lint:fix"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
   }
 }
