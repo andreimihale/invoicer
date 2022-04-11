@@ -1,3 +1,3 @@
-const App = () => <>React app</>;
+App = () => <>React app</>;
 
 export default App;
