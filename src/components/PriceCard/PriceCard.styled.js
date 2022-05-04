@@ -91,20 +91,28 @@ const CardButton = styled(Button)`
 
 const CardContent = styled.div`
   margin: 1.56rem 1rem;
+  height: 100%;
 `;
 
 const CardList = styled.ul`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 26px;
   letter-spacing: 0.46px;
   color: ${(props) => props.theme.light.color.third};
   padding-left: 20px;
+  height: 100%;
 `;
 
-const CardListElement = styled.li``;
+const CardListElement = styled.li`
+  @media screen and (min-width: 1200px) {
+    &:not(:first-child) {
+      padding-top: 2rem;
+    }
+  }
+`;
 
 export {
   Container,

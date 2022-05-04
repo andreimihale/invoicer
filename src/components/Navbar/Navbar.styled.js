@@ -7,7 +7,10 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   max-height: 100px;
-  background-color: ${(props) => props.theme.light.color.primary};
+  background-color: ${(props) =>
+    props.white
+      ? props.theme.light.color.secondary
+      : props.theme.light.color.primary};
   padding: ${(props) => props.theme.light.padding};
   @media screen and (min-width: 900px) {
     justify-content: flex-start;
