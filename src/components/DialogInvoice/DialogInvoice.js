@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,8 +10,12 @@ import {
   StyledButtonContainer,
   StyledDialogActions,
 } from "./DialogInvoice.styled";
+import { resetInvoiceDetails } from "../../redux/invoiceDetails";
+import { resetTemplate } from "../../redux/templateSelector";
 
 const DialogInvoice = () => {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
@@ -24,6 +29,8 @@ const DialogInvoice = () => {
 
   const handleRedirectHome = (event) => {
     event.preventDefault();
+    dispatch(resetInvoiceDetails());
+    dispatch(resetTemplate());
     navigate("/");
   };
 

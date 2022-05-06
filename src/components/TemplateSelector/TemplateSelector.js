@@ -1,26 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GetWidth from "../../utils/GetWidth";
-import { selectTemplate, resetTemplate } from "../../redux/templateSelector";
+import { selectTemplate } from "../../redux/templateSelector";
 import Images from "../ImageCarousel/ImageCarousel.data";
 import {
   StyledContainer,
   StyledHeader,
-  StyledArrowBackIosIcon,
-  StyledArrowForwardIosIcon,
   StyledCarousel,
   StyledDiv,
   StyledButton,
 } from "./TemplateSelector.styled";
+import ArrowLeft from "../CarouselArrows/ArrowLeft";
+import ArrowRight from "../CarouselArrows/ArrowRight";
 
 const TemplateSelector = () => {
   const { templateId } = useSelector((state) => state.template);
   const dispatch = useDispatch();
 
-  const wide = GetWidth(1200);
+  const wide = GetWidth(900);
 
   const settings = {
     infinite: true,
@@ -30,8 +30,8 @@ const TemplateSelector = () => {
     slidesToScroll: 1,
     lazyLoad: true,
     autoplay: false,
-    prevArrow: <StyledArrowBackIosIcon />,
-    nextArrow: <StyledArrowForwardIosIcon />,
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
   };
 
   return (

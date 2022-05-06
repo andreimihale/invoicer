@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -18,13 +16,6 @@ export const StyledHeader = styled.h1`
   font-size: 24px;
   line-height: 26px;
   letter-spacing: 0.46px;
-  color: ${(props) => props.theme.light.color.third};
-`;
-
-export const StyledArrowBackIosIcon = styled(ArrowBackIosIcon)`
-  color: ${(props) => props.theme.light.color.third};
-`;
-export const StyledArrowForwardIosIcon = styled(ArrowForwardIosIcon)`
   color: ${(props) => props.theme.light.color.third};
 `;
 

@@ -2,18 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import styled from "styled-components";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Images from "./ImageCarousel.data";
-
-const StyledArrowBackIosIcon = styled(ArrowBackIosIcon)`
-  color: ${(props) => props.theme.light.color.third};
-`;
-const StyledArrowForwardIosIcon = styled(ArrowForwardIosIcon)`
-  color: ${(props) => props.theme.light.color.third};
-`;
+import ArrowLeft from "../CarouselArrows/ArrowLeft";
+import ArrowRight from "../CarouselArrows/ArrowRight";
 
 const StyledDiv = styled.div`
   padding: 0 1rem;
@@ -29,8 +22,8 @@ const ImageCarousel = ({ autoplay, autoplaySpeed }) => {
     lazyLoad: true,
     autoplay,
     autoplaySpeed,
-    prevArrow: <StyledArrowBackIosIcon />,
-    nextArrow: <StyledArrowForwardIosIcon />,
+    prevArrow: <ArrowLeft />,
+    nextArrow: <ArrowRight />,
   };
 
   return (

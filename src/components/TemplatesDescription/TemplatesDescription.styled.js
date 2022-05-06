@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wave = styled.img`
   width: 100%;
+  margin-bottom: -1px;
 `;
 const Container = styled.div`
   display: flex;
