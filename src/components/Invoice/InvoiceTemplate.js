@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import InputAdornment from "@mui/material/InputAdornment";
+import { useDispatch, useSelector } from "react-redux";
 import {
   StyledContainer,
   StyledDueDate,
@@ -15,20 +16,29 @@ import UploadLogo from "../../static/Uplaod_Logo.svg";
 import GetWidth from "../../utils/GetWidth";
 import InvoiceHeader from "../InvoiceHeader/InvoiceHeader";
 import InvoiceTable from "../InvoiceTable/InvoiceTable";
+import {
+  setInvoiceFrom,
+  setInvoiceTo,
+  setVat,
+} from "../../redux/invoiceDetails";
 
 const InvoiceTemplate = () => {
-  const [form, setForm] = React.useState({ logo: UploadLogo });
-  const fileUploaded = form.logo !== UploadLogo;
+  const { invoice } = useSelector((state) => state.invoice);
+  const dispatch = useDispatch();
+
   const wide = GetWidth(1200);
+
+  const handleInvoiceFrom = (event, field) => {
+    dispatch(setInvoiceFrom({ value: event.target.value, field }));
+  };
+
+  const handleInvoiceTo = (event, field) => {
+    dispatch(setInvoiceTo({ value: event.target.value, field }));
+  };
 
   return (
     <StyledContainer component="form" noValidate autoComplete="off">
-      <InvoiceHeader
-        setForm={setForm}
-        form={form}
-        fileUploaded={fileUploaded}
-        wide={wide}
-      />
+      <InvoiceHeader wide={wide} />
       <StyledInvoice>
         <StyledInvoiceSection>
           <StyledInvoiceTitle>invoice from:</StyledInvoiceTitle>
@@ -36,57 +46,44 @@ const InvoiceTemplate = () => {
             label="Company"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { company: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "company")}
           />
           <StyledInvoiceTextField
             label="Phone Number"
             required
+            error={invoice.from.phoneNumberError}
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { phoneNumber: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "phoneNumber")}
           />
           <StyledInvoiceTextField
             label="Street"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { street: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "street")}
           />
           <StyledInvoiceTextField
             label="City"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { city: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "city")}
           />
           <StyledInvoiceTextField
             label="County"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { county: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "county")}
           />
           <StyledInvoiceTextField
             label="Country"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { country: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "country")}
           />
           <StyledInvoiceTextField
             label="Registration No."
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, from: { registrationNo: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceFrom(e, "registrationNo")}
           />
         </StyledInvoiceSection>
         <StyledInvoiceSection style={{ marginTop: "2rem" }}>
@@ -95,47 +92,37 @@ const InvoiceTemplate = () => {
             label="Buyer"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, to: { buyer: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceTo(e, "buyer")}
           />
           <StyledInvoiceTextField
             label="Street"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, to: { street: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceTo(e, "street")}
           />
           <StyledInvoiceTextField
             label="City"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) => setForm({ ...form, to: { city: e.target.value } })}
+            onChange={(e) => handleInvoiceTo(e, "city")}
           />
           <StyledInvoiceTextField
             label="County"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, to: { county: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceTo(e, "county")}
           />
           <StyledInvoiceTextField
             label="Country"
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, to: { country: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceTo(e, "country")}
           />
           <StyledInvoiceTextField
             label="Registration No."
             required
             size={wide ? undefined : "small"}
-            onChange={(e) =>
-              setForm({ ...form, to: { registrationNo: e.target.value } })
-            }
+            onChange={(e) => handleInvoiceTo(e, "registrationNo")}
           />
         </StyledInvoiceSection>
         <StyledVat>
@@ -143,9 +130,11 @@ const InvoiceTemplate = () => {
             label="VAT"
             required
             size={wide ? undefined : "small"}
+            error={invoice.vatError}
             InputProps={{
               endAdornment: <InputAdornment position="end">%</InputAdornment>,
             }}
+            onChange={(e) => dispatch(setVat(e.target.value))}
           />
         </StyledVat>
         <StyledTable>

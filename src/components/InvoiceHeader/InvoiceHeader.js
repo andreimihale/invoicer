@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 import {
   StyledHeaderSection,
   StyledUploadLogo,
@@ -10,9 +11,11 @@ import {
   StyledInvoiceNumber,
   StyledTextField,
 } from "./InvoiceHeader.styled";
+import { setInvoiceNumber, setLogo } from "../../redux/invoiceDetails";
 
-const InvoiceHeader = ({ setForm, form, fileUploaded, wide }) => {
-  const a = "a";
+const InvoiceHeader = ({ wide }) => {
+  const { invoice } = useSelector((state) => state.invoice);
+  const dispatch = useDispatch();
 
   return (
     <StyledHeaderSection>
@@ -23,17 +26,14 @@ const InvoiceHeader = ({ setForm, form, fileUploaded, wide }) => {
             id="icon-button-file"
             type="file"
             onChange={(e) =>
-              setForm({
-                ...form,
-                logo: URL.createObjectURL(e.target.files[0]),
-              })
+              dispatch(setLogo(URL.createObjectURL(e.target.files[0])))
             }
           />
           <StyledIconButton aria-label="upload picture" component="span">
             <StyledImg
-              src={form.logo}
+              src={invoice.logo}
               alt="upload"
-              fileUploaded={fileUploaded}
+              fileUploaded={invoice.fileUploaded}
               wide={wide}
             />
           </StyledIconButton>
@@ -44,7 +44,7 @@ const InvoiceHeader = ({ setForm, form, fileUploaded, wide }) => {
           label="Invoice NO."
           required
           size={wide ? undefined : "small"}
-          onChange={(e) => setForm({ ...form, invoiceNumber: e.target.value })}
+          onChange={(e) => dispatch(setInvoiceNumber(e.target.value))}
         />
       </StyledInvoiceNumber>
     </StyledHeaderSection>
@@ -52,9 +52,6 @@ const InvoiceHeader = ({ setForm, form, fileUploaded, wide }) => {
 };
 
 InvoiceHeader.propTypes = {
-  setForm: PropTypes.func.isRequired,
-  form: PropTypes.instanceOf(Object).isRequired,
-  fileUploaded: PropTypes.bool.isRequired,
   wide: PropTypes.bool.isRequired,
 };
 

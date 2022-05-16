@@ -68,7 +68,7 @@ export const StyledVat = styled.div`
 
 export const StyledTable = styled.div`
   height: 40vh;
-  width: 70%;
+  width: 100%;
 `;
 
 export const StyledDueDate = styled.div``;
