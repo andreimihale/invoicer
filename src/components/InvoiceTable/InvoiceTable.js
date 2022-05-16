@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
 
 const InvoiceTable = () => {
@@ -7,7 +7,6 @@ const InvoiceTable = () => {
     { id: 1, description: "Description", qty: 1, unitPrice: 75 },
   ]);
   const { invoice } = useSelector((state) => state.invoice);
-  const dispatch = useDispatch();
   const columns = [
     { field: "id", headerName: "NO.", width: 90, headerAlign: "left" },
     {
