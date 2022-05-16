@@ -14,6 +14,7 @@ import {
 import UploadLogo from "../../static/Uplaod_Logo.svg";
 import GetWidth from "../../utils/GetWidth";
 import InvoiceHeader from "../InvoiceHeader/InvoiceHeader";
+import InvoiceTable from "../InvoiceTable/InvoiceTable";
 
 const InvoiceTemplate = () => {
   const [form, setForm] = React.useState({ logo: UploadLogo });
@@ -147,7 +148,9 @@ const InvoiceTemplate = () => {
             }}
           />
         </StyledVat>
-        <StyledTable>TABLE</StyledTable>
+        <StyledTable>
+          <InvoiceTable />
+        </StyledTable>
         <StyledDueDate>DUE DATE</StyledDueDate>
       </StyledInvoice>
     </StyledContainer>

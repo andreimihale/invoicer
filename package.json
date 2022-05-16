@@ -36,6 +36,7 @@
     "@mui/icons-material": "^5.6.0",
     "@mui/material": "^5.6.1",
     "@mui/styled-engine-sc": "^5.6.1",
+    "@mui/x-data-grid": "^5.10.0",
     "@redux-devtools/extension": "^3.2.2",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",

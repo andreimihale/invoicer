@@ -61,8 +61,14 @@ export const StyledInvoiceTextField = styled(TextField)`
 
 export const StyledVat = styled.div`
   margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 `;
 
-export const StyledTable = styled.div``;
+export const StyledTable = styled.div`
+  height: 40vh;
+  width: 70%;
+`;
 
 export const StyledDueDate = styled.div``;
